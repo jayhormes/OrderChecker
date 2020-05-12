@@ -16,7 +16,7 @@
 	small, strike, strong, sub, sup, tt, var, b,
 	u, i, center, dl, dt, dd, ol, ul, li, fieldset,
 	form, label, legend, table, caption, tbody,
-	tfoot, thead, tr, th, td, article, aside,
+	tfoot, thead, th, article, aside,
 	canvas, details, embed, figure, figcaption,
 	footer, header, hgroup, menu, nav, output, ruby,
 	section, summary, time, mark, audio, video {
@@ -26,6 +26,19 @@
 		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
+	}
+
+	tr, td {
+		margin: 0;
+		padding: 30;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline;
+	}
+
+	.mytable td.red {
+		color: #ff7496;
 	}
 
 	article, aside, details, figcaption, figure,
@@ -159,7 +172,7 @@
 		font-weight: 300;
 		line-height: 2;
 		letter-spacing: 0.2em;
-		text-transform: uppercase;
+		/*text-transform: uppercase;*/
 	}
 
 		@media screen and (max-width: 1680px) {

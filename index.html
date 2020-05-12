@@ -36,6 +36,8 @@
 					console.log(result); // 得到 {name: "oxxo", age: 18, text: "你的名字是 oxxo，年紀 18 歲～"}
 					if (result.length != 0) {
 						ShowString = "<p>" + result + "</p>";
+						ShowString = "<center><p>您的查詢結果如下</p><table class=\"mytable\" style=\"border-top:3px #FFD382 solid;border-bottom:3px #FFD382 solid;\" cellpadding=\"10\" border='1'><tr>" + "<td class='red'>" + "產品" + "</td>" + "<td class='red'>" + "花色" + "</td>"+ "<td class='red'>" + "狀態" + "</td>"+"</tr><tr>"+"<td>" + result[0][2] + "</td>"+ "<td>" + result[0][3] + "</td>"+ "<td>" + result[0][4] + "</td>"+"</tr></table></center>"
+
 					} else {
 						ShowString = "<p>" + "查無此人" + "</p>";
 					}
@@ -48,14 +50,16 @@
 				var UserAccount = document.getElementById("AccountStringTextBox").value;
                 var UserPhone = document.getElementById("PhoneStringTextBox").value;
 
-				ShowString = "<p>查詢中</p>";
-				ChangeString(ShowString);
-
 				console.log(UserAccount);
 				console.log(UserPhone);
-
-				GetData(UserAccount, UserPhone);
-
+				if (UserAccount == "" || UserPhone == "" ) {
+					ShowString = "<p>好像沒有填資料唷，喵～</p>";
+					ChangeString(ShowString);
+				} else {
+					ShowString = "<p>查詢中</p>";
+					ChangeString(ShowString);
+					GetData(UserAccount, UserPhone);
+				}
             }
 		</script>				
 		<!-- Wrapper -->
