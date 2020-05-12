@@ -1,19 +1,63 @@
 <!DOCTYPE HTML>
-<!--
-	Identity by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
-		<title>Identity by HTML5 UP</title>
+		<title>Test</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>				
 	</head>
 	<body class="is-preload">
 
+		<script>
+			function ChangeString(input){
+				var NewStringValue=input;
+				document.getElementById("MessageArea").innerHTML=NewStringValue;
+			}
+		</script>
+		<script>
+			function GetData(UserAccount, UserPhone) {
+				const uri = 'https://script.google.com/macros/s/AKfycbxhsmRvtPCDZ2kyn2uFVTx44yX7pT-XyBgjf1mwx-mpZ5_olSY/exec';
+				fetch(uri, {
+				method:'POST',
+				body:encodeURI(JSON.stringify({
+					ssid: '1TSf8Z-u0VVE0mSIxbx1gt83XEoJo3_orJE33RAMZ_cY',
+					sheetName: '工作表1',
+					accountString: UserAccount,
+					phoneNumber: UserPhone,				
+				})),
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+				}
+				})
+				.then(res => {
+					return res.json();   // 使用 json() 可以得到 json 物件
+				}).then(result => {
+					console.log(result); // 得到 {name: "oxxo", age: 18, text: "你的名字是 oxxo，年紀 18 歲～"}
+					if (result.length != 0) {
+						ShowString = "<p>" + result + "</p>";
+					} else {
+						ShowString = "<p>" + "查無此人" + "</p>";
+					}
+					ChangeString(ShowString);
+				});	
+			}
+		</script>		
+		<script>
+            function GetSheetData(){
+				var UserAccount = document.getElementById("AccountStringTextBox").value;
+                var UserPhone = document.getElementById("PhoneStringTextBox").value;
+
+				ShowString = "<p>查詢中</p>";
+				ChangeString(ShowString);
+
+				console.log(UserAccount);
+				console.log(UserPhone);
+
+				GetData(UserAccount, UserPhone);
+
+            }
+		</script>				
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -21,46 +65,17 @@
 					<section id="main">
 						<header>
 							<span class="avatar"><img src="images/avatar.jpg" alt="" /></span>
-							<h1>Jane Doe</h1>
-							<p>Senior Psychonautics Engineer</p>
+							<p>請輸入您的嘖嘖帳號</p>
+							<input type="text" id="AccountStringTextBox" textarea style="border:3px orange dashed;"></textarea>
+							<p></p>
+							<p>請輸入手機號碼末三碼</p>
+							<input type="text" id="PhoneStringTextBox" textarea style="border:3px orange dashed;"></textarea>
+							<p></p>
+							<input type="button" value="查詢" onclick="GetSheetData()">	
+							<p></p>		
+							<p id="MessageArea"></p>
+							<p></p>					
 						</header>
-						<!--
-						<hr />
-						<h2>Extra Stuff!</h2>
-						<form method="post" action="#">
-							<div class="fields">
-								<div class="field">
-									<input type="text" name="name" id="name" placeholder="Name" />
-								</div>
-								<div class="field">
-									<input type="email" name="email" id="email" placeholder="Email" />
-								</div>
-								<div class="field">
-									<select name="department" id="department">
-										<option value="">Department</option>
-										<option value="sales">Sales</option>
-										<option value="tech">Tech Support</option>
-										<option value="null">/dev/null</option>
-									</select>
-								</div>
-								<div class="field">
-									<textarea name="message" id="message" placeholder="Message" rows="4"></textarea>
-								</div>
-								<div class="field">
-									<input type="checkbox" id="human" name="human" /><label for="human">I'm a human</label>
-								</div>
-								<div class="field">
-									<label>But are you a robot?</label>
-									<input type="radio" id="robot_yes" name="robot" /><label for="robot_yes">Yes</label>
-									<input type="radio" id="robot_no" name="robot" /><label for="robot_no">No</label>
-								</div>
-							</div>
-							<ul class="actions special">
-								<li><a href="#" class="button">Get Started</a></li>
-							</ul>
-						</form>
-						<hr />
-						-->
 						<footer>
 							<ul class="icons">
 								<li><a href="#" class="icon brands fa-twitter">Twitter</a></li>
@@ -73,7 +88,7 @@
 				<!-- Footer -->
 					<footer id="footer">
 						<ul class="copyright">
-							<li>&copy; Jane Doe</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							<li>&copy; Angy Chain</li><li>Design: Jay Hormes</li>
 						</ul>
 					</footer>
 
