@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Test</title>
+		<title>安琪圈圈 – 嘖嘖訂單查詢系統</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -21,7 +21,7 @@
 				fetch(uri, {
 				method:'POST',
 				body:encodeURI(JSON.stringify({
-					ssid: '1TSf8Z-u0VVE0mSIxbx1gt83XEoJo3_orJE33RAMZ_cY',
+					ssid: '1Cc9Xb1gIR5gH5byn1fCSW-0_jbdyLgxeGVy7qc-l2tg',
 					sheetName: '工作表1',
 					accountString: UserAccount,
 					phoneNumber: UserPhone,				
@@ -35,9 +35,16 @@
 				}).then(result => {
 					console.log(result); // 得到 {name: "oxxo", age: 18, text: "你的名字是 oxxo，年紀 18 歲～"}
 					if (result.length != 0) {
-						ShowString = "<p>" + result + "</p>";
+						ShowString = "<center><p>您的查詢結果如下</p>";
+						for (Walker = 0 ; Walker < result.length ; Walker++) {
+							ShowString = ShowString + "<table class=\"mytable\" style=\"border-top:3px #FFD382 solid;border-bottom:3px #FFD382 solid;\" cellpadding=\"10\" border='1'><tr>" + "<td class='red'>" + "產品" + "</td>" + "<td class='red'>" + "花色" + "</td>"+ "</tr><tr>"+"<td>" + result[Walker][2] + "</td>"+ "<td>" + result[Walker][3] + "</td>" + "</tr><tr>" + "<td class='red'>" + "出貨進度" + "</td>" + "<td class='red'>" + "狀態" + "</td>" + "</tr><tr>" + "<td>" + result[Walker][5] + "</td>"+ "<td>" + result[Walker][4] + "</td>"+"</tr></table>";
+							ShowString = ShowString + "<p></p>";
+						}
+						ShowString = ShowString + "</center>";
+
+
 					} else {
-						ShowString = "<p>" + "查無此人" + "</p>";
+						ShowString = "<p>" + "好像查不到耶，喵嗚～" + "</p>";
 					}
 					ChangeString(ShowString);
 				});	
@@ -48,14 +55,16 @@
 				var UserAccount = document.getElementById("AccountStringTextBox").value;
                 var UserPhone = document.getElementById("PhoneStringTextBox").value;
 
-				ShowString = "<p>查詢中</p>";
-				ChangeString(ShowString);
-
 				console.log(UserAccount);
 				console.log(UserPhone);
-
-				GetData(UserAccount, UserPhone);
-
+				if (UserAccount == "" || UserPhone == "" ) {
+					ShowString = "<p>好像沒有填資料唷，喵～</p>";
+					ChangeString(ShowString);
+				} else {
+					ShowString = "<p>🐈 查詢中 🐈</p>";
+					ChangeString(ShowString);
+					GetData(UserAccount, UserPhone);
+				}
             }
 		</script>				
 		<!-- Wrapper -->
@@ -78,9 +87,8 @@
 						</header>
 						<footer>
 							<ul class="icons">
-								<li><a href="#" class="icon brands fa-twitter">Twitter</a></li>
-								<li><a href="#" class="icon brands fa-instagram">Instagram</a></li>
-								<li><a href="#" class="icon brands fa-facebook-f">Facebook</a></li>
+								<li><a href="https://www.instagram.com/angychaintw/" target=”_blank” class="icon brands fa-instagram">Instagram</a></li>
+								<li><a href="https://www.facebook.com/AngyChain" target=”_blank” class="icon brands fa-facebook-f">Facebook</a></li>
 							</ul>
 						</footer>
 					</section>
