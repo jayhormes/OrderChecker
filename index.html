@@ -19,21 +19,20 @@
 			function GetData(UserAccount, UserPhone) {
 				const uri = 'https://script.google.com/macros/s/AKfycbxhsmRvtPCDZ2kyn2uFVTx44yX7pT-XyBgjf1mwx-mpZ5_olSY/exec';
 				fetch(uri, {
-				method:'POST',
-				body:encodeURI(JSON.stringify({
-					ssid: '1Cc9Xb1gIR5gH5byn1fCSW-0_jbdyLgxeGVy7qc-l2tg',
-					sheetName: '工作表1',
-					accountString: UserAccount,
-					phoneNumber: UserPhone,				
-				})),
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
-				}
+					method:'POST',
+					body:encodeURI(JSON.stringify({
+						ssid: '1Cc9Xb1gIR5gH5byn1fCSW-0_jbdyLgxeGVy7qc-l2tg',
+						sheetName: '工作表1',
+						accountString: UserAccount,
+						phoneNumber: UserPhone,				
+					})),
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+					}
 				})
 				.then(res => {
-					return res.json();   // 使用 json() 可以得到 json 物件
+					return res.json();
 				}).then(result => {
-					console.log(result); // 得到 {name: "oxxo", age: 18, text: "你的名字是 oxxo，年紀 18 歲～"}
 					if (result.length != 0) {
 						ShowString = "<center><p>您的查詢結果如下</p>";
 						for (Walker = 0 ; Walker < result.length ; Walker++) {
@@ -55,8 +54,6 @@
 				var UserAccount = document.getElementById("AccountStringTextBox").value;
                 var UserPhone = document.getElementById("PhoneStringTextBox").value;
 
-				console.log(UserAccount);
-				console.log(UserPhone);
 				if (UserAccount == "" || UserPhone == "" ) {
 					ShowString = "<p>好像沒有填資料唷，喵～</p>";
 					ChangeString(ShowString);
